@@ -1,2 +1,2 @@
-# React
-React Study
+# Vanila JS
+Vanila JS
