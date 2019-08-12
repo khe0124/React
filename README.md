@@ -36,9 +36,7 @@ Vanilla JS는 순수 자바스크립트 자체입니다.
 
 </br>
 
-## JS 완벽가이드
+## 참고하기
 
-
-### 참고하기
 https://seaweedisland.tistory.com/81?category=843413 </br>
 https://mylko72.gitbooks.io/javascript-cookbook/content/chapter1/chapter1_1.html
