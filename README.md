@@ -1,2 +1,2 @@
-# Vanila JS
-Vanila JS
+# Vanilla JS
+Vanilla JS
