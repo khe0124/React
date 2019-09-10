@@ -107,7 +107,7 @@ HTML문서상의 어떤 요소에 id속성을 부여했고 Window객체에 같�
 
 ### 다중 창과 프레임
 각 탭은 브라우저 문맥상 독립적이다. 한 탭은 저마다 다른 탭과는 단절된 독립적인 Window객체를 가진다.
-<code><iframe></code>,<code><frameset></code>,<code><frame></code> 요소 또한 중첩된 내부 브라우징 문맥 생성한다.
+<code><iframe></code>, <code><frameset></code> , <code><frame></code> 요소 또한 중첩된 내부 브라우징 문맥 생성한다.
 - Window.open(): 지정한 URL을 새 창 혹은 현재 창에 불러오고 해당 Window객체 리턴
 - HTML target속성: "_blank","_parent","_top"과 같은 값을 사용할 수 있다.
 - Window.close(): 이 메서드는 창을 닫는다.
