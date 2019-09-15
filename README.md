@@ -20,7 +20,7 @@ Vanilla JS는 순수 자바스크립트 자체입니다.
 ### 2. 클라이언트 측 자바스크립트
 * <a href="https://github.com/khe0124/Vanilla-JS/blob/master/%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%20%EC%B8%A1%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/01_%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8.md">웹브라우저 자바스크립트</a>
 * <a href="https://github.com/khe0124/Vanilla-JS/blob/master/%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%20%EC%B8%A1%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/02_Window%20%EA%B0%9D%EC%B2%B4.md">Window 객체</a>
-* 문서 스크립팅
+* <a href="https://github.com/khe0124/Vanilla-JS/blob/master/%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%20%EC%B8%A1%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/03_%EB%AC%B8%EC%84%9C%20%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8C%85.md">문서 스크립팅</a>
 * CSS 다루기
 * 이벤트 다루기
 * HTTP 스크립팅
