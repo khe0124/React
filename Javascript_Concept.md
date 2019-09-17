@@ -1,9 +1,11 @@
 # 초보자를 위한 Javascript 200제
 
 고재도,노지연 님이 집필하신 Javascript 200제(정보문화사)를 참고하여 정리하였습니다.
-</br>
+<br>
 
 <hr>
+
+<br>
 
 ## 1. 자료형 확인하기
 - <code>typeof</code>: 특정 원시 자료형 확인, 원시자료형과 객체형을 구분할 때
@@ -324,7 +326,20 @@ This ship is full. daniel can not board this ship.
 
 <br>
 
-## 24.
+## 24. 배열 합치기
+문자열과 마찬가지로 배열을 합칠 때도 concat메소드를 사용하다.
+```javascript
+const eng = ['a','b','c'];
+const han = ['ㄱ','ㄴ','ㄷ'];
+console.log(eng.concat(han));
+```
+결과값: ["a", "b", "c", "ㄱ", "ㄴ", "ㄷ"]
+
+<br>
+
+## 25. 배열에 특정 구분자 넣어서 String으로 변환하기(join)
+Array객체의 메소드 join은 각 배열 요소를 병합하여 하나의 문자열로 변환한다.
+
 
 
 
