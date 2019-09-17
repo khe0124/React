@@ -339,9 +339,41 @@ console.log(eng.concat(han));
 
 ## 25. 배열에 특정 구분자 넣어서 String으로 변환하기(join)
 Array객체의 메소드 join은 각 배열 요소를 병합하여 하나의 문자열로 변환한다.
+```javascript
+const lyrics = [
+'I can show you the world',
+'Shining shimmering splendid',
+'Tell me princess',
+'Now When did you last let your heart decide'
+];
 
+console.log(lyrics.join('.\n'));
+```
+결과값: <br>
+I can show you the world. <br>
+Shining shimmering splendid. <br>
+Tell me princess. <br>
+Now When did you last let your heart decide
 
+<br>
 
+## 26. 배열의 마지막 요소 추출하기
+```javascript
+const arr = [1, 2, 3];
+console.log(arr.pop());
+console.log(arr.pop());
+console.log(arr.pop());
+console.log(arr.pop());
+```
+결과값: <br>
+3 <br>
+2 <br>
+1 <br>
+undefined
+
+<br>
+
+## 27. 배열 맨 앞 요소 추출하기
 
 
 
