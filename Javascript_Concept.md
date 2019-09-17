@@ -374,6 +374,76 @@ undefined
 <br>
 
 ## 27. 배열 맨 앞 요소 추출하기
+배열의 맨 앞 요소를 추출하는 메서드이다.
+```javascript
+const arr = [1, 2, 3];
+console.log(arr.shifr());
+console.log(arr.shifr());
+console.log(arr.shifr());
+console.log(arr.shifr());
+```
+결과값: <br>
+1 <br>
+2 <br>
+3 <br>
+undefined
+
+<br>
+
+## 28. 배열 특정 위치의 요소 추출하기
+Array 객체의 메소드 spilce는 인덱스의 시작과 끝을 지정하여 배열 요소를 추출한다
+- <code>배열.slice(시작인덱스, 끝인덱스)</code>
+```javascript
+const arr = ['a','b','c','ㄱ','d','e'];
+console.log(`알파벳이 아닌 문자는 ${arr.slice(3, 4)}이다.`);
+```
+결과값: 알파벳이 아닌 문자는 ㄱ이다.
+
+<br>
+
+## 29. 배열의 특정 요소 위치 확인하기
+Array 객체의 메소드 indexOf()는 대입된 값(1번째 인자)을 내부에서 검색한 후 값이 일치한다면 해당 인덱스를 반환한다.
+- <code>배열.indexOf(검색할 값, 시작 인덱스)</code>
+```javascript
+const arr = ['car', 'cat', 'chair', 'chimebell', 'corn'];
+console.log(`'cat' is in this index ${arr.indexOf('cat')}`);
+```
+결과값: 'cat' is in this index 1
+
+<br>
+
+## 30. 배열 순환하기 
+Array 객체의 forEach메소드는 배열 내부 요소를 순환하고 각 요소에 대해 callback 함수를 실행한다.
+- <code>배열.forEach(callback, 함수)</code>
+```javascript
+const arr = [
+    { id: 0, name: '혁', age: 16 }, 
+    { id: 1, name: '산호', age: 23 }, 
+    { id: 2, name: '민우', age: 35 }, 
+    { id: 3, name: '예지', age: 22 }
+];
+
+arr.forEach((el) => {
+    console.log(el.name);
+});
+```
+배열 arr의 forEach를 호출하고 배열의 내부요소는 callback함수의 변수 el로 전달된다.
+배열 arr의 요소들은 객체자료형으로 통일되어 있다. 객체 el의 속성 name을 콘솔로 출력한다.
+결과값: <br>
+혁 <br>
+산호 <br>
+민우 <br>
+예지 <br>
+
+<br>
+
+## 31. 배열 정렬하기
+Array객체의 sort메소드는 인자로 비교함수를 대입해 배열요소들을 정렬한다.
+
+
+
+
+
 
 
 
