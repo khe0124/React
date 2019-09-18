@@ -658,12 +658,173 @@ console.log(arr);
 ## 41. 객체에서 값만 추출하기
 Object객체의 values메소드를 이용하여 객체의 속성값만 추출할 수 있고 역시 배열로 반환된다.
 ```javascript
-
+const arr = Object.values(객체);
 ```
 
 <br>
 
 ## 42. 객체를 배열로 변환하기
+entries메소드는 객체를 배열로 변경한다.
+```javascript
+const arr = Object.entries(객체);
+```
+
+<br>
+
+## 43. 객체에 변경되지 않도록 하기
+객체를 동결해서 다른 속성을 추가제거 못하게 막는다.
+```javascript
+Object.freeze(객체);
+```
+
+<br>
+
+## 44. 객체에 속성 추가 못하게 하기
+객체를 밀봉해서 다른 속성을 추가제거 못하게 막는다. 단 기존 속성은 변경하능하다.
+```javascript
+Object.seal(객체);
+```
+
+<br>
+
+## 45. 객체 병합 확장하기
+assign메소드는 인자로 대입된 객체들을 첫번째 인자인 객체를 기준으로 하나로 병합한다. 
+```javascript
+Object.assign(반환될 객체, ... 병합될 다른 객체들);
+```
+
+<br>
+
+## 46. 진수 변환
+toString()을 이용해서 진법변환을 한다.
+```javascript
+const num = 123;
+const bin = num.toString(2);
+const oct = num.toString(8);
+const hex = num.toString(16);
+
+console.log(bin);
+console.log(oct);
+console.log(hex);
+```
+결과값: <br>
+1111011 <br>
+173 <br>
+7b <br>
+
+<br>
+
+## 47. 10진수 아닌 진법을 다른 진법으로 변환
+parseInt함수를 이용해 숫자의 진법변환
+```javascript
+const bin = 1000010011;
+const oct = 1023;
+const hex = 213;
+
+const dexByBin = parseInt(bin, 2);
+const dexByOct = parseInt(oct, 8);
+const dexByhex = parseInt(hex, 16);
+const hexByOct = parseInt(oct, 8).toString(16);
+
+console.log(dexByBin);
+console.log(dexByOct);
+console.log(dexByhex);
+console.log(hexByOct);
+```
+결과값: <br>
+531 <br>
+531 <br>
+531 <br>
+213
+
+<br>
+
+## 48. 랜덤값 구하기
+random 메소드로 난수값 구하기
+```javascript
+const genRandom = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+for(let i =0; i<5; i++){
+  console.log(genRandom(1, 10));
+}
+```
+결과값: 결과값은 1~10사이에서 랜덤으로 정수값을 출력한다.
+
+<br>
+
+## 49. 특정 자리수에서 반올림
+반올림하기
+```javascript
+const val = 482.193;
+console.log(Math.round(val));
+console.log(Math.round(val * 10) / 10);
+console.log(Math.round(val * 100) / 100);
+
+```
+결과값: <br>
+482 <br>
+482.2 <br>
+482.19
+
+<br>
+
+## 50. 특정 자리수에서 올림
+올림하기
+```javascript
+Math.ceil(매개변수)
+```
+
+<br>
+
+## 51. 특정 자리수에서 내림
+내림하기
+```javascript
+Math.floor(매개변수)
+```
+
+<br>
+
+## 52. 현재 시간을 원하는 포맷으로 출력
+현재 시간을 출력해주는 메소드
+```javascript
+Date.prototype.yyyymmdd = function() {
+    const yyyy = this.getFullYear();
+    const mm = this.getMonth() < 9 ? 
+                `0${this.getMonth() + 1}` : this.getMonth() + 1;
+    const dd = this.getDate() < 10 ? 
+                `0${this.getDate()}` : this.getDate();
+    return '' + yyyy + mm + dd;
+}
+
+const date = new Date();
+console.log(date.yyyymmdd());
+```
+결과값: 20190918
+
+<br>
+
+## 53. UTC기준 날짜 출력하기
+세계 협정표준시를 기준으로 날짜를 출력해주는 메소드
+```javascript
+const date = new Date();
+const dateUTC = Date.UTC(
+	date.getUTCFullYear()
+	, date.getUTCMonth()
+	, date.getUTCDate()
+	, date.getUTCHours()
+	, date.getUTCMinutes()
+	, date.getUTCSeconds()
+);
+
+console.log(new Date(dateUTC));
+```
+결과값: Wed Sep 18 2019 13:53:16 GMT+0900 (한국 표준시)
+
+<br>
+
+## 54. 두 개의 날짜 사이의 경과시간 계산
 내용
 ```javascript
 
@@ -671,7 +832,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 43. 객체에 속성 추가 못하게 막기
+## 55. JSON을 문자열로 변환
 내용
 ```javascript
 
@@ -679,7 +840,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 44. 객체 병합 확장하기
+## 56. JSON문자열을 JSON으로 변환
 내용
 ```javascript
 
@@ -687,7 +848,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 45. 진수 변환
+## 57. 정규표현식으로 대응되는 문자열 위치 확인
 내용
 ```javascript
 
@@ -695,7 +856,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 46. 10진수 아닌 진법을 다른 진법으로 변환
+## 58. 정규표현식으로 문자열 확인
 내용
 ```javascript
 
@@ -703,7 +864,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 47. 랜덤값 구하기
+## 59. 정규표현식으로 특정문자의 포함 여부 확인
 내용
 ```javascript
 
@@ -711,7 +872,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 48. 특정 자리수에서 반올림
+## 60. 정규표현식으로 문자열 변환
 내용
 ```javascript
 
@@ -719,7 +880,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 49. 특정 자리수에서 올림
+## 61. 정규표현식으로 문자열 치환
 내용
 ```javascript
 
@@ -727,7 +888,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 50. 특정 자리수에서 내림
+## 62. 반복가능한 객체와 반복자 이해
 내용
 ```javascript
 
@@ -735,7 +896,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 51. 현재 시간을 원하는 포맷으로 출력
+## 63. 문자열 순환
 내용
 ```javascript
 
@@ -743,7 +904,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 52. UTC기준 날짜 출력하기
+## 64. 배열 순환
 내용
 ```javascript
 
@@ -751,7 +912,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 53. 두 개의 날짜 사이의 경과시간 계산
+## 65. Map객체에 요소 추가,삭제,확인
 내용
 ```javascript
 
@@ -759,7 +920,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 54. JSON을 문자열로 변환
+## 66. Map객체 크기 확인
 내용
 ```javascript
 
@@ -767,7 +928,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 55. JSON문자열을 JSON으로 변환
+## 67. Map객체 요소 나열
 내용
 ```javascript
 
@@ -775,7 +936,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 56. 정규표현식으로 대응되는 문자열 위치 확인
+## 68. Map객체 순환 Ⅰ
 내용
 ```javascript
 
@@ -783,95 +944,7 @@ Object객체의 values메소드를 이용하여 객체의 속성값만 추출할
 
 <br>
 
-## 57. 정규표현식으로 문자열 확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 58. 정규표현식으로 특정문자의 포함 여부 확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 59. 정규표현식으로 문자열 변환
-내용
-```javascript
-
-```
-
-<br>
-
-## 60. 정규표현식으로 문자열 치환
-내용
-```javascript
-
-```
-
-<br>
-
-## 61. 반복가능한 객체와 반복자 이해
-내용
-```javascript
-
-```
-
-<br>
-
-## 62. 문자열 순환
-내용
-```javascript
-
-```
-
-<br>
-
-## 63. 배열 순환
-내용
-```javascript
-
-```
-
-<br>
-
-## 64. Map객체에 요소 추가,삭제,확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 65. Map객체 크기 확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 66. Map객체 요소 나열
-내용
-```javascript
-
-```
-
-<br>
-
-## 67. Map객체 순환 Ⅰ
-내용
-```javascript
-
-```
-
-<br>
-
-## 68. Map객체 순환 Ⅱ
+## 69. Map객체 순환 Ⅱ
 내용
 ```javascript
 
