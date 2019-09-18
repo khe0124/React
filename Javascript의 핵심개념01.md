@@ -1022,22 +1022,54 @@ for (let value of map.values()) {
 }
 ```
 결과값:
-
+키 정보만 출력합니다.<br>
+one <br>
+two <br>
+값 정보만 출력합니다. <br>
+1 <br>
+2
 <br>
 
 ## 63. Map객체 순환 Ⅱ
-내용
+Map객체를 순회하는 방법
 ```javascript
+const map = new Map();
 
+for (let num of [1, 2, 3, 4, 5]) {
+    map.set((value) => value * 2, num);
+}
+
+for (let [func, value] of map) {
+    console.log(func(value));
+}
 ```
+결과값:
+2 <br>
+4 <br>
+6 <br>
+8 <br>
+10 <br>
 
 <br>
 
 ## 64. Set객체 값 추가/삭제/확인
-내용
+Set 객체에 값을 추가하고 확인하는 방법
 ```javascript
+const s = new Set();
 
+s.add('one');
+s.add('two');
+s.add('three');
+
+console.log(s.has('one'));
+s.delete('one');
+console.log(s.has('one'));
+console.log(s.has('two'));
 ```
+결과값: <br>
+true <br>
+false <br>
+true
 
 <br>
 
