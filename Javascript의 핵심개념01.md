@@ -825,22 +825,207 @@ console.log(new Date(dateUTC));
 <br>
 
 ## 54. 두 개의 날짜 사이의 경과시간 계산
-내용
+두 개의 날짜를 받아 그 사이의 시간 계산
 ```javascript
+Date.daysDiff = (date1, date2) => {
+    if (!(date1 instanceof Date) || !(date2 instanceof Date)) return '';
 
+    const d1 = date1.getTime();
+    const d2 = date2.getTime();
+
+    let diff = d2 - d1;
+
+    const seconds = Math.floor((diff = diff / 1000) % 60);
+    const minutes = Math.floor((diff = diff / 60) % 60);
+    const hours = Math.floor((diff = diff / 60) % 24);
+    const days = Math.floor(diff / 24);
+    return `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
+}
+
+var from = new Date(2000, 0, 1);
+var to = new Date(from.getFullYear() + 1, from.getMonth() + 3, 
+    from.getDate() + 5, from.getHours() + 4, from.getMinutes() + 30, 
+    from.getSeconds() + 50);
+
+console.log(`From   > ${from}`)
+console.log(`To     > ${to}`)
+console.log(Date.daysDiff(from, to));
 ```
 
 <br>
 
 ## 55. JSON을 문자열로 변환
-내용
+JSON객체의 stirngify메소드는 대입한 값을 JSON문자열로 변환한다.
 ```javascript
-
+JSON.stringify(값, 리플레이서, 공백 개수)
 ```
+1. 값: JSON 문자열로 변환할 대상 값
+2. 리플레이서: JSON 문자열로 변환 전 값을 변경하는 인자
+3. 공백 개수: JSON 문자열의 들여쓰기 시 공백의 개수
 
 <br>
 
 ## 56. JSON문자열을 JSON으로 변환
+JSON문자열을 JSON으로 변환하는 방법이다.
+```javascript
+JSON.parse(값, 리플레이서)
+```
+1. 값: stringify로 변환할 대상 값
+2. 리플레이서: JSON으로 변환하기 전 값을 변경하는 인자
+
+<br>
+
+## 57. 문자열 순환
+String객체는 반복 가능한 객체로 for...of문을 통해 순회하며 각 요소를 반복 실행가능하다.
+```javascript
+for (변수 of 반복 가능한 객체){
+  실행할 문장
+}
+
+const str = "A Whole New World";
+for(const item of str) {
+  console.log(item);
+}
+const iter = str[Symbol.iterator]();
+```
+결과값: <br>
+A <br>
+   <br>
+W <br>
+h <br>
+o <br>
+l <br>
+e <br>
+   <br>
+N <br>
+e <br>
+w <br>
+   <br>
+W <br>
+o <br>
+r <br>
+l <br>
+d <br>
+
+<br>
+
+## 58. 배열 순환
+Array는 반복가능 한 객체로 배열을 순환하는 방법이다.
+```javascript
+const singers = [{name: "Beyonce"}, {name: "Jay-z"}];
+for(const item of singers) {
+  console.log(item.name);
+}
+
+const iter = singers[Symbol.iterator]();
+```
+결과값: <br>
+Beyonce <br>
+Jay-z
+
+<br>
+
+## 59. Map객체에 요소 추가,삭제,확인
+Map은 ES6부터 표준으로 추가된 데이터 콜렉션의 한 종류이다. Key와 Value를 한 쌍으로 이루는 구조이고 키의 중복은 허용되지 않는다.
+또한 반복가능한 객체이다.
+- Map객체의 Key는 다양한 자료형값으로 정의될 수 있다. (Object는 문자, Symbol자료형만 가능)
+- Map객체는 반복가능한 객체로 Symbol.iterator가 기본적으로 정의되어 있다.
+
+```javascript
+const map = new Map();
+
+map.set('one', 1);
+map.set('two', 2);
+
+console.log(map.get('one'));
+console.log(map.has('one'));
+map.delete('one');
+
+console.log(map.has('one'));
+console.log(map.has('two'));
+```
+결과값: <br>
+1 <br>
+true <br>
+false <br>
+true <br>
+
+<br>
+
+## 60. Map객체 크기 확인
+Map의 Key에는 어떤 종류의 자료형도 선언 가능하다. 객체, 배열, 함수형등 다양한 자료형으로 키를 선언할 수 있다.
+```javascript
+const map = new Map();
+
+map.set('one', 1);
+map.set(2, 'two');
+map.set([ 1, 2, 3 ], 'Three elements');
+map.set({ a: 'A', b: 'B' }, 'object element');
+map.set(function() {}, 'function element');
+
+console.log(map.size);
+```
+결과값: 5
+
+<br>
+
+## 61. Map객체 요소 나열
+Map객체의 요소들을 나열한다.
+- keys(): Map객체 요소의 키 정보만 모아 Iterator 객체로 반환
+- values(): Map객체 요소의 값 정보만 모아 Iterator 객체로 반환
+- entries(): Map객체 요소의 키와 값을 한 쌍으로 배열로 만들어 인덱스 0,1에 대입되고 이 배열들을 iterator객체로 반환
+```javascript
+const map = new Map();
+
+map.set('one', 1);
+map.set('two', 2);
+map.set('three', 3);
+
+const keys = map.keys();
+const values = map.values();
+const entries = map.entries();
+
+console.log(keys.next().value);
+console.log(values.next().value);
+console.log(entries.next().value);
+
+console.log(keys);
+console.log(values);
+console.log(entries);
+```
+결과값: <br>
+one <br>
+1 <br>
+[ 'one', 1 ] <br>
+MapIterator {'two', 'three'} <br>
+MapIterator {2, 3} <br>
+MapIterator {['two', 2], ['three', 3]}
+
+<br>
+
+## 62. Map객체 순환 Ⅰ
+keys, values, entries 함수를 활용하여, Map객체 요소를 순회할 수 있다.
+```javascript
+const map = new Map();
+
+map.set('one', 1);
+map.set('two', 2);
+
+console.log('키 정보만 출력합니다');
+for (let key of map.keys()) {
+    console.log(key);
+}
+
+console.log('값 정보만 출력합니다');
+for (let value of map.values()) {
+    console.log(value);
+}
+```
+결과값:
+
+<br>
+
+## 63. Map객체 순환 Ⅱ
 내용
 ```javascript
 
@@ -848,7 +1033,7 @@ console.log(new Date(dateUTC));
 
 <br>
 
-## 57. 정규표현식으로 대응되는 문자열 위치 확인
+## 64. Set객체 값 추가/삭제/확인
 내용
 ```javascript
 
@@ -856,7 +1041,7 @@ console.log(new Date(dateUTC));
 
 <br>
 
-## 58. 정규표현식으로 문자열 확인
+## 65. Set객체 크기확인
 내용
 ```javascript
 
@@ -864,111 +1049,7 @@ console.log(new Date(dateUTC));
 
 <br>
 
-## 59. 정규표현식으로 특정문자의 포함 여부 확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 60. 정규표현식으로 문자열 변환
-내용
-```javascript
-
-```
-
-<br>
-
-## 61. 정규표현식으로 문자열 치환
-내용
-```javascript
-
-```
-
-<br>
-
-## 62. 반복가능한 객체와 반복자 이해
-내용
-```javascript
-
-```
-
-<br>
-
-## 63. 문자열 순환
-내용
-```javascript
-
-```
-
-<br>
-
-## 64. 배열 순환
-내용
-```javascript
-
-```
-
-<br>
-
-## 65. Map객체에 요소 추가,삭제,확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 66. Map객체 크기 확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 67. Map객체 요소 나열
-내용
-```javascript
-
-```
-
-<br>
-
-## 68. Map객체 순환 Ⅰ
-내용
-```javascript
-
-```
-
-<br>
-
-## 69. Map객체 순환 Ⅱ
-내용
-```javascript
-
-```
-
-<br>
-
-## 70. Set객체 값 추가/삭제/확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 71. Set객체 크기확인
-내용
-```javascript
-
-```
-
-<br>
-
-## 72. Set객체 Array 중복제거
+## 66. Set객체 Array 중복제거
 내용
 ```javascript
 
@@ -977,7 +1058,7 @@ console.log(new Date(dateUTC));
 <br>
 
 
-## 73. Set객체 값 나열
+## 67. Set객체 값 나열
 내용
 ```javascript
 
@@ -985,24 +1066,7 @@ console.log(new Date(dateUTC));
 
 <br>
 
-## 74. Set객체 순환
-내용
-```javascript
-
-```
-
-<br>
-
-
-## 75. SetTimeout
-내용
-```javascript
-
-```
-
-<br>
-
-## 76. setInterval
+## 68. Set객체 순환
 내용
 ```javascript
 
@@ -1011,7 +1075,15 @@ console.log(new Date(dateUTC));
 <br>
 
 
-## 77. Promise란?
+## 69. SetTimeout
+내용
+```javascript
+
+```
+
+<br>
+
+## 70. setInterval
 내용
 ```javascript
 
@@ -1020,7 +1092,7 @@ console.log(new Date(dateUTC));
 <br>
 
 
-## 78. Promise 조합
+## 71. Promise란?
 내용
 ```javascript
 
@@ -1029,7 +1101,16 @@ console.log(new Date(dateUTC));
 <br>
 
 
-## 79. Async란?
+## 72. Promise 조합
+내용
+```javascript
+
+```
+
+<br>
+
+
+## 73. Async란?
 내용
 ```javascript
 
