@@ -438,16 +438,443 @@ arr.forEach((el) => {
 <br>
 
 ## 31. 배열 정렬하기
-Array객체의 sort메소드는 인자로 비교함수를 대입해 배열요소들을 정렬한다.
+Array객체의 sort메소드는 인자로 비교함수를 대입해 배열요소들을 정렬한다. 이 때, 비교 함수에서 return으로 반환되는 비교값에 따라 순서가 정해진다.
+- 비교값 > 0 : a가 b보다 작은 숫자의 인덱스, 즉 a가 b보다 앞에 위치한다.
+- 비교값 < 0 : b가 a보다 작은 숫자의 인덱스, 위와 반대로 b가 a보다 앞에 위치한다.
+- 비교값 = 0 : a와 b의 위치를 변경하지 않는다.
+```javascript
+const numArr1 = [2, 0, 3, 4, 1];
+const numArr2 = [2, 0, 3, 4, 1];
+const objArr = [
+    { id: 2, name: 'Leo' }, 
+    { id: 0, name: 'Daniel' }, 
+    { id: 3, name: 'Asher' },
+    { id: 4, name: 'Chloe' },
+    { id: 1, name: 'Chloe' } 
+];
+
+numArr1.sort(function(a, b) { return a - b; });
+numArr2.sort(function(a, b) { return b - a; });
+objArr.sort(function(a, b) {
+    if (a.name > b.name) return 1;
+    else if (b.name > a.name) return -1;
+    else return 0;
+})
+
+console.log(`오름차순 : ${numArr1}`);
+console.log(`내림차순 : ${numArr2}`);
+console.log(objArr);
+```
+결과값: <br>
+오름차순 : 0,1,2,3,4 <br>
+내림차순 : 4,3,2,1,0 <br>
+0: {id: 3, name: "Asher"} <br>
+1: {id: 4, name: "Chloe"} <br>
+2: {id: 1, name: "Chloe"} <br>
+3: {id: 0, name: "Daniel"} <br>
+4: {id: 2, name: "Leo"} <br>
+
+<br>
+
+## 32. 배열의 순서를 반대로 나열하기
+Array객체의 reverse 메소드는 배열 순서를 반대로 나열한다.
+```javascript
+const str = 'abcde';
+const arr = str.split('');
+arr.reverse();
+
+console.log(arr.join(''));
+```
+결과값: edcba
+
+<br>
+
+## 33. 배열 요소가 특정 조건을 만족하는지 확인하기
+Array 객체의 some메소드는 callback함수의 return값이 true를 반환할 때까지만 배열 요소를 순환한다. true를 반환하는 요소의 다음 요소들에 대해서는
+더 이상 처리하지 않습니다.
+```javascript
+const arr = [
+ {id: 0, name:'Tim', age: 14},
+ {id: 1, name:'Jenny', age: 32},
+ {id: 2, name:'Sarah', age: 50},
+ {id: 3, name:'Thomas', age: 11},
+ {id: 4, name:'Chris', age: 24}
+];
+
+const david = arr.some(el => el.name == 'david');
+const minor = arr.some(el => el.age < 19);
+
+console.log(david);
+console.log(minor);
+```
+결과값: <br>
+false (name이 david라는 객체가 없으므로)<br>
+true (age가 19보다 작은 객체가 있으므로)
+
+<br>
+
+## 34. 모든 배열 요소가 특정 조건을 만족하는지 확인하기
+Array 객체의 every메소드는 배열의 모든 요소가 callback 함수 조건을 만족하는지 확인한다. <br>
+한 번이라도 조건을 만족하지 않으면 false, 모두 조건을 만족할 때만 true 
+```javascript
+const arr = [
+ {id: 0, name:'Tim', age: 14},
+ {id: 1, name:'Jenny', age: 32},
+ {id: 2, name:'Sarah', age: 50},
+ {id: 3, name:'Thomas', age: 11},
+ {id: 4, name:'Chris', age: 24}
+];
+
+const Tim = arr.every(el => el.name == 'Tim');
+const minor = arr.every(el => el.age < 19);
+
+console.log(Tim);
+console.log(minor);
+```
+결과값: <br>
+false <br>
+false
+
+<br>
+
+## 35. 배열의 특정 조건을 기준으로 필터링하기
+Array 객체의 filter메소드는 인자로 대입된 callback함수를 통해 배열 내부를 순환하며, 요소 각각이 특정 조건을 만족하는지 확인한다.
+```javascript
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const filteredTwo = arr.filter(a => {    
+    return a % 2 == 0;
+});
+console.log(filteredTwo);
+
+const filteredThree = arr.filter(a => a % 3 == 0);
+console.log(filteredThree);
+```
+결과값: <br>
+[ 2, 4, 6, 8, 10 ] <br>
+[ 3, 6, 9 ]
 
 
+<br>
 
+## 36. 배열의 특정 조건을 충족하는 요소 찾기
+Array 객체의 find메소드는 인자로 대입된 callback함수를 통해 배열 내부를 순환하며, 특정 조건을 만족하는 첫 번째 요소를 반환한다.
+```javascript
+const arr = [
+ {id: 0, name:'Tim', age: 14},
+ {id: 1, name:'Jenny', age: 32},
+ {id: 2, name:'Sarah', age: 50},
+ {id: 3, name:'Thomas', age: 11},
+ {id: 4, name:'Chris', age: 24}
+];
 
+const kid = arr.find(a => a.age === 11);
+console.log(kid);
+```
+결과값: {id: 3, name: "Thomas", age: 11}
 
+<br>
 
+## 37. 배열요소 일괄 변경하기
+배열의 요소를 일괄 변경해야할 때 Array객체의 map메소드를 활용한다. callback함수를 인자로 받아, callback함수의 return으로 반환되는 값들을 <br>
+재조합하여 새로운 배열에 만든다.
+```javascript
+const arr = [
+ {id: 0, name:'Tim', age: 14},
+ {id: 1, name:'Jenny', age: 32},
+ {id: 2, name:'Sarah', age: 50},
+ {id: 3, name:'Thomas', age: 11},
+ {id: 4, name:'Chris', age: 24}
+];
 
+const arr2 = arr.map(a => {
+ a.age = a.age + 1;
+ return a;
+});
 
+const arr3 = arr.map(a => a.name);
 
+console.log(arr2);
+console.log(arr3);
+```
+결과값: <br>
+0: {id: 0, name: "Tim", age: 15} <br>
+1: {id: 1, name: "Jenny", age: 33} <br>
+2: {id: 2, name: "Sarah", age: 51} <br>
+3: {id: 3, name: "Thomas", age: 12} <br>
+4: {id: 4, name: "Chris", age: 25} <br>
+["Tim", "Jenny", "Sarah", "Thomas", "Chris"]
 
+<br>
 
+## 38. 배열 내 값을 누적시키기
+Array객체의 메소드 reduce는 배열 요소를 순환하며 정의된 callback함수에 의해 단일 값으로 누적시킨다.
+- <code>배열.reduce((누적된값, 현재요소값, 현재인덱스, 원본배열) => {return 누적값으로 반환되는 값}, 초기값);</code>
+```javascript
+const arr = [1, 2, 3, 4, 5];
 
+const res = arr.reduce((acc, a) => {
+  return acc + a
+}, 0);
+
+console.log(res);
+```
+결과값: 15
+
+<br>
+
+## 39. 중첩된 배열을 단일하게 만들기
+reduce메소드의 다른 활용 예제이다.
+```javascript
+const arr = [1, [1, 2], [4, 5, 6], ['a','b'], 'New'];
+
+const res = arr.reduce((acc, a) => {
+  return acc.concat(a);
+}, []);
+
+console.log(res);
+```
+결과값: [1, 1, 2, 4, 5, 6, "a", "b", "New"]
+
+<br>
+
+## 40. 객체에서 키만 추출하기
+Object객체의 메소드 Keys를 활용해 객체의 키를 추출할 수 있다. 추출된 키는 배열로 반환된다.
+```javascript
+const object1 = {
+  book: 'bible',
+  music: 'ccm',
+  style: 'modern',
+  price: 11000
+};
+
+const arr = Object.keys(object1);
+console.log(arr);
+```
+결과값: ["book", "music", "style", "price"]
+
+<br>
+
+## 41. 객체에서 값만 추출하기
+Object객체의 values메소드를 이용하여 객체의 속성값만 추출할 수 있고 역시 배열로 반환된다.
+```javascript
+
+```
+
+<br>
+
+## 42. 객체를 배열로 변환하기
+내용
+```javascript
+
+```
+
+<br>
+
+## 43. 객체에 속성 추가 못하게 막기
+내용
+```javascript
+
+```
+
+<br>
+
+## 44. 객체 병합 확장하기
+내용
+```javascript
+
+```
+
+<br>
+
+## 45. 진수 변환
+내용
+```javascript
+
+```
+
+<br>
+
+## 46. 10진수 아닌 진법을 다른 진법으로 변환
+내용
+```javascript
+
+```
+
+<br>
+
+## 47. 랜덤값 구하기
+내용
+```javascript
+
+```
+
+<br>
+
+## 48. 특정 자리수에서 반올림
+내용
+```javascript
+
+```
+
+<br>
+
+## 49. 특정 자리수에서 올림
+내용
+```javascript
+
+```
+
+<br>
+
+## 50. 특정 자리수에서 내림
+내용
+```javascript
+
+```
+
+<br>
+
+## 51. 현재 시간을 원하는 포맷으로 출력
+내용
+```javascript
+
+```
+
+<br>
+
+## 52. UTC기준 날짜 출력하기
+내용
+```javascript
+
+```
+
+<br>
+
+## 53. 두 개의 날짜 사이의 경과시간 계산
+내용
+```javascript
+
+```
+
+<br>
+
+## 54. JSON을 문자열로 변환
+내용
+```javascript
+
+```
+
+<br>
+
+## 55. JSON문자열을 JSON으로 변환
+내용
+```javascript
+
+```
+
+<br>
+
+## 56. 정규표현식으로 대응되는 문자열 위치 확인
+내용
+```javascript
+
+```
+
+<br>
+
+## 57. 정규표현식으로 문자열 확인
+내용
+```javascript
+
+```
+
+<br>
+
+## 58. 정규표현식으로 특정문자의 포함 여부 확인
+내용
+```javascript
+
+```
+
+<br>
+
+## 59. 정규표현식으로 문자열 변환
+내용
+```javascript
+
+```
+
+<br>
+
+## 60. 정규표현식으로 문자열 치환
+내용
+```javascript
+
+```
+
+<br>
+
+## 61. 반복가능한 객체와 반복자 이해
+내용
+```javascript
+
+```
+
+<br>
+
+## 62. 문자열 순환
+내용
+```javascript
+
+```
+
+<br>
+
+## 63. 배열 순환
+내용
+```javascript
+
+```
+
+<br>
+
+## 64. Map객체에 요소 추가,삭제,확인
+내용
+```javascript
+
+```
+
+<br>
+
+## 65. Map객체 크기 확인
+내용
+```javascript
+
+```
+
+<br>
+
+## 66. Map객체 요소 나열
+내용
+```javascript
+
+```
+
+<br>
+
+## 67. Map객체 순환 Ⅰ
+내용
+```javascript
+
+```
+
+<br>
+
+## 68. Map객체 순환 Ⅱ
+내용
+```javascript
+
+```
+
+<br>
