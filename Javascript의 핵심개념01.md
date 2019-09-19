@@ -1198,27 +1198,27 @@ clearInterval(timer);
 
 
 ## 71. Promise란?
-내용
-```javascript
-
-```
+ECMAScript 2015에서 비동기처리를 위한 Promise객체를 소개했다. Promise는 언젠가 완료될 일(계산)을 나타내는 객체다.<br>
+Promise 객체는 다음과 같은 세 가지의 상태를 가진다.
+- Pending: 아직 결과가 없는 상태. 약속 했지만 약속에 대한 결과과 없다.
+- Fulfilled: 비동기처리가 성공적으로 완료되어 약속이 이행된 상태, 이 때 결과로 하나의 값이 전달됨.
+- Rejected: 비동기처리가 실패한 사앹, 약속이 거부되고 그 결과로 그 근거를 전달한다.
+<br>
+Promise 객체는 다음 두 가지 메소드를 가진다.
+- <code>then(onFulfilled, onReject)</code>: 약속이 완료됐을 때 호출될 함수들을 정의한다. 이때 첫번째 인자로 전달되는 함수는 약속이 <br>
+성공적으로 이행됐을 때 호출되고 두 번째 인자로 전달된 함수는 거부됐을 때 호출된다. 두 전달 인자 함수들은 매개변수를 가지는데 각각의 결과가 
+매개변수를 통해 전달된다.
+- <code>catch(onReject)</code>: 약속이 거부됐을 때 호출될 함수(onReject)를 등록합니다.
+<br>
+- 참고: mozilla MDN 
+<img src="https://mdn.mozillademos.org/files/8633/promises.png">
 
 <br>
 
 
 ## 72. Promise 조합
-내용
-```javascript
+하나의 비동기계산이 다른 비동기계산의 결과에 의해 처리되어야 하는 경우가 많다. Promise가 나오기 전에는 콜백패턴을 통해 비동기처리를 <br> 하였고, 중첩된 비동기코드들을 처리하다 보면 콜백 피라미드 형태의 코드들이 쉽게 나왔었다.
 
-```
-
-<br>
-
-
-## 73. Async란?
-내용
-```javascript
-
-```
+https://programmingsummaries.tistory.com/325
 
 <br>
