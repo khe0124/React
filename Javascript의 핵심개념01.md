@@ -1074,51 +1074,124 @@ true
 <br>
 
 ## 65. Set객체 크기확인
-내용
+set객체의 크기를 확인하는 방법이다.
 ```javascript
-
+const box = new Set();
+box.add('apple');
+box.add('banana');
+box.add('grape');
+console.log(box.size);
 ```
+결과값: 3
 
 <br>
 
 ## 66. Set객체 Array 중복제거
-내용
+Set객체는 중복값을 허용하지 않는다. 이러한 Set객체의 특징을 이용해서 배열에서 중복값을 제거할 수 있다.
 ```javascript
-
+const duArr = ['1','2','3','2','3','2','3','4'];
+const arr = new Set(duArr);
+console.log([...arr]);
 ```
+결과값: ["1", "2", "3", "4"]
 
 <br>
 
-
 ## 67. Set객체 값 나열
-내용
+Set안의 객체 값을 나열하는 방법이다.
 ```javascript
+const s = new Set();
 
+s.add('one');
+s.add('two');
+s.add('three');
+
+const keys = s.keys();
+const values = s.values();
+const entries = s.entries();
+
+console.log(keys.next().value);
+console.log(values.next().value);
+console.log(entries.next().value);
+
+console.log(keys);
+console.log(values);
+console.log(entries);
 ```
+결과값: <br>
+one <br>
+one <br>
+["one", "one"] <br>
+SetIterator {"two", "three"} <br>
+SetIterator {"two", "three"} <br>
+SetIterator {"two" => "two", "three" => "three"} 
 
 <br>
 
 ## 68. Set객체 순환
-내용
-```javascript
+Set객체에서 for-of를 통해 순환하는 방법은 Map객체와 유사하지만 반복문을 통해 전달되는 값에서 차이가 있다.
 
+```javascript
+const s = new Set();
+
+s.add('one');
+s.add('two');
+
+console.log('키 정보만 출력합니다');
+for (let key of s.keys()) {
+    console.log(key);
+}
+
+console.log('값 정보만 출력합니다');
+for (let value of s.values()) {
+    console.log(value);
+}
+
+console.log('[for..of, entries] 키,값 정보를 동시에 출력합니다');
+for (let [key, value] of s.entries()) {
+    console.log(`키는 ${key}, 값은 ${value} 입니다`);
+}
+console.log('[forEach] 키,값 정보를 동시에 출력합니다');
+s.forEach((value, key) => {
+    console.log(`키는 ${key}, 값은 ${value} 입니다`);
+})
 ```
+결과값:
+키 정보만 출력합니다 <br>
+one <br>
+two <br>
+값 정보만 출력합니다 <br>
+one <br>
+two <br>
+[for..of, entries] 키,값 정보를 동시에 출력합니다 <br>
+키는 one, 값은 one 입니다 <br>
+키는 two, 값은 two 입니다 <br>
+[forEach] 키,값 정보를 동시에 출력합니다 <br>
+키는 one, 값은 one 입니다 <br>
+키는 two, 값은 two 입니다
 
 <br>
 
 
 ## 69. SetTimeout
-내용
-```javascript
+Global Object에 내장된 메소드인 setTimeout은 브라우저에서 Window전역객체의 메소드로 정의되고, Node.js에서는 GLOBAL이라 불리는 전역객체
+메소드로 정의되어 있다. 별도로 객체생성, 선언이 없어도 함수호출하여 실행할 수 있다. 일정 시간 후에 특정코드, 특정함수를 의도적으로 지연한 후
+실행하고 싶을 때 사용하는 메소드이다.
 
+```javascript
+setTimeout(function (){//code here}, delay);
 ```
 
 <br>
 
 ## 70. setInterval
-내용
+setInterval도 setTimeout과 동일하게 글로벌 객체에 내장된 메소드다. setInterval메소드는 인자로 callback함수와 지연시간을 받는다.
 ```javascript
+const timer = setInterval(() => {
+  console.log(`${count++}번째 함수가 실행됩니다.`);
+},1000);
 
+clearInterval(timer);
 ```
 
 <br>
