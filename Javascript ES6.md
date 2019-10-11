@@ -7,7 +7,6 @@ ES6 공부를 위한 문서입니다.</br>
 <br>
 
 ## 1. Scope
-- <code>typeof</code>: 특정 원시 자료형 확인, 원시자료형과 객체형을 구분할 때
 ### 1) let
 ### 2) let과 closure
 ### 3) const - 선언된 변수 지키기
