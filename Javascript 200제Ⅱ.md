@@ -102,9 +102,55 @@ Tag Attribute와 DOM의 Property의 차이점을 알아야한다.
 </html>
 ```
 
+<br>
 
+## 13. 문서이동
+location객체를 이용하여 링크된 문서로 이동시킨다.
+```javascript
+document.getElementById("location").innerHTML =
+`
+현재문서 URL: ${location.href}
+현재문서 도메인명: ${location.hostname}
+현재문서 경로명: ${location.pathname}
+현재문서 프로토콜: ${location.protocol}
+;`
 
+document.getElementById("btn")
+  .addEventListener('click', e => {
+    location.assign('https://site.com');
+  })
+```
 
+<br>
+
+## 14. 브라우저 히스토리 이해
+history객체 이용하기
+
+<br>
+
+## 15. 브라우저 로컬 스토리지 사용하기
+
+<br>
+
+## 16. 로컬 파일을 브라우저에서 읽기
+
+<br>
+
+## 17. iframe 조작하기
+
+<br>
+
+## 18. iframe과 메시지 교환하기
+
+<br>
+
+## 19. XMLHttpRequest로 비동기 통신처리
+
+<br>
+
+## 20. Fetch API를 활용한 비동기 통신처리
+
+<br>
 
 
 
