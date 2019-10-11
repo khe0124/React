@@ -47,4 +47,80 @@ Tag Attribute와 DOM의 Property의 차이점을 알아야한다.
 
 <br>
 
-## 8. 
+## 8. 이벤트 전파 제어하기
+
+<br>
+
+## 9. 이벤트 위임 처리하기
+
+<br>
+
+## 10. 사용자 이벤트 생성하기
+
+<br>
+
+## 11. HTML폼 활용하기
+폼요소는 사용자로부터 정보를 입력받는다. 그렇기 때문에 정보를 보여주기만 하는 다른 요소들과 다르게 정보의 흐름이 반대로 형성된다.
+
+<br>
+
+## 12. 스크롤 처리하기
+스크롤 시 화면의 특정 영역을 고정하는 방법
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DOM 네비게이션 예제</title>
+  <link rel="stylesheet" href="./css/scroll.css">
+</head>
+<body>
+  <section class="hero">
+    <h1>스크롤을 아래로 내려보세요.</h1>
+  </section>
+  <nav>
+    <a href="https://javascript-200.com">자바스크립트 200제</a>
+  </nav>
+  <section class="articles">
+  </section>
+  <script>
+    const nav = document.querySelector('nav');
+    const navTopOffset = nav.offsetTop;
+    window.addEventListener('scroll', e => {
+      if (window.pageYOffset >= navTopOffset) {
+        nav.style.position = 'fixed';
+        nav.style.top = 0;
+        nav.style.left = 0;
+        nav.style.right = 0;
+      } else {
+        nav.style.position = '';
+        nav.style.top = '';
+      }
+    });
+  </script>
+</body>
+</html>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
