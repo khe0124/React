@@ -233,10 +233,11 @@ function print(){
 }
 print();
 ```
-
 <br>
-## 4. Object
-### 1) 간단히 객체생성하기
+
+## 4. Object<br>
+### 1) 간단히 객체생성하기<br>
+
 ```javascript
 function getObj(){
   const name = "kim";
@@ -256,6 +257,7 @@ function getObj(){
 var obj =getObj();
 console.log(obj);
 ```
+
 <br>
 
 ## 5. Destructuring
