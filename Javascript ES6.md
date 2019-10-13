@@ -109,7 +109,7 @@ console.log(str.includes(constr)) //true
 
 ## 3. Array
 ### 1) for of - 순회하기
-- 1) forEach로 순회하기
+1) forEach로 순회하기
 ```javascript
 var data = [1, 2, undefined, NaN, null, ""];
 data.forEach(function(value){
@@ -118,7 +118,7 @@ data.forEach(function(value){
 ```
 이렇게 data라는 배열을 forEach문으로 돌리면 배열의 요소가 차례대로 로그에 찍힌다.
 <br>
-- 2) for in으로 순회하기
+2) for in으로 순회하기
 ```javascript
 var data = [1, 2, undefined, NaN, null, ""];
 for(let idx in arr){
@@ -137,44 +137,278 @@ for(let idx in arr){
 배열요소 외에도 function(){}까지 같이 추가가되어 나타내주는 문제가 있다.
 그래서 for in 배열요소에서 잘 안쓴다. 
 <br>
-- 3) for of로 순회하기
+3) for of로 순회하기
 ```javascript
 var data = [1, 2, undefined, NaN, null, ""];
-for(let idx in arr){
-  console.log(data[idx]);
+for(let value of arr){
+  console.log(value);
 }
 ```
-
-
-### 2) spread operator - 배열의 복사
-### 3) spread operator - 몇 가지 활용
-### 4) from 메서드로 진짜 배열 만들기
-
+이렇게 하면 for in과 다르게 배열요소들만 로그에 찍힌다.
+이렇게 for of를 사용해서 배열을 순회한다.
+```javascript
+var str = "A Whole New World";
+for(let value of str){
+  console.log(value);
+}
+```
+이렇게하면 str안의 문자열이 문자단위로(공백도) 하나하나 차례로 순회하면서 로그에 찍힌다. for of로 배열 뿐만 아니라 문자열도
+순회할 수 있다.
 <br>
 
+### 2) spread operator - 배열의 복사
+//spread operator , 펼침연산자.
+```javascript
+let pre = ["beer", "cup" ,35];
+let newData = [...pre]; //여기의 ...이 펼침연산자!
+console.log(pre, newData);
+console.log(pre === newData); //false
+```
+이러한 코드를 실행하였을 때 결과는 pre와 newData가 같아보이는 배열이 출력된다.
+그러나 같은 값인지 === 연산자를 이용해 확인해보면 false라는 결과가 뜨는데 이는 이 둘이 다른 데이터라는 것을 의미한다.
+
+### 3) spread operator - 몇 가지 활용
+```javascript
+let pre = [100, 200, "hello", null];
+let newData = [0,1,2,3, ...pre,4];
+console.log(newData);
+```
+결과값: [0, 1, 2, 3, 100, 200, "hello", null, 4]
+...(펼침연산자)를 통해서 배열을 배열사이에 끼워넣기 아주 편리해졌다.
+<br>
+```javascript
+function sum(a,b,c){
+  return a+b+c;
+}
+let arr = [100, 200, 300];
+
+console.log(sum.apply(null, arr)); //예전방식
+console.log(sum(...arr)); //펼침연산자를 통해 쉽게 요소를 펼칠 수 있다.
+```
+
+### 4) from 메서드로 진짜 배열 만들기
+```javascript
+function addMark() {
+  let newData = [];
+  for(let i=0; i<arguments.length; i++){ //인자값을 정해주지 않아도 지역변수, arguments와 같은 값을 이용해서 인자값들을 배열과 비슷한 형태로 arguments로 들어간다.
+    newData.push(arguments[i] + "!");
+  }
+  console.log(newData);
+}
+addMark(1,2,3,4,5);
+```
+결과값: ["1!", "2!", "3!", "4!", "5!"]
+```javascript
+function addMark() {
+  let newData = arguments.map(function(value){
+    return value+"!";
+  })
+  console.log(newData);
+}
+addMark(1,2,3,4,5);
+```
+이렇게 작성해주어도 위와 같은 결과가 나온다.
+<br>
+```javascript
+function addMark() {
+  let newArray = Array.from(arguments);
+  let newData = newArray.map(function(value){
+    return value+"!";
+  })
+  console.log(newData);
+}
+addMark(1,2,3,4,5);
+```
+이렇게 하면 arguments로 부터 새로운 배열을 만들어 줄 수 있다.
+<br>
+## 실습예제 1
+```javascript
+function print(){
+  let arr = document.querySelectorAll("li");
+  let list = Array.from(arr);
+  let listArray = list.filter(function(value){
+    return value.innerText.includes("e");
+  });
+  return listArray;
+}
+print();
+```
+
+<br>
 ## 4. Object
 ### 1) 간단히 객체생성하기
-
+```javascript
+function getObj(){
+  const name = "kim";
+  
+  const getName = function() {
+    return name;
+  }
+  const setName = function(newname) {
+    return newname;
+  }
+  
+  const printName = function() {
+    console.log(name);
+  }
+  return{getName, setName, name}
+}
+var obj =getObj();
+console.log(obj);
+```
 <br>
 
 ## 5. Destructuring
 ### 1) Destructuring Array
+```javascript
+let data = ["car","ship","bike","bus"];
+let benz = data[0];
+let honda = data[2];
+let [benz,,honda] = data; //위 두 코드를 이렇게 쓸수 있다.
+console.log(benz, honda); //car, bike
+```
+destructuring array는 이렇게 사용한다.
+
 ### 2) Destructuring Object
+```javascript
+let obj = {
+  name : "cartman",
+  address : "South Park",
+  age : 10
+}
+let {name, age} = obj;
+console.log(name, age); // cartman, 10
+
+let {name:myName, age:myAge} = obj; //이렇게 할당할 수도 있다.
+console.log(myName, myAge); // cartman, 10
+```
 ### 3) Destructuring활용 JSON파싱
+```javascript
+var search = [
+{ 
+  "title" : "naver",
+  "url" : "https://www.naver.com",
+  "contentlist" : [
+      "이메일",
+      "블로그",
+      "까페",
+      "뉴스"
+  ]
+},
+{ 
+  "title" : "daum",
+  "url" : "https://www.daum.net",
+  "contentlist" : [
+      "이메일",
+      "까페",
+      "쇼핑",
+      "뉴스"
+  ]
+}
+];
+
+let [,naver] = search;
+let [title, url] = naver;
+console.log(title, url); //결과: naver, https://www.naver.com
+
+let [, {title, url}] = search;
+console.log(url) //결과: https://www.naver.com
+```
+Destructuring을 이용해서 필요한 변수값을 뽑아다 쓸 수 있다.
+
 ### 4) Destructuring활용 Event객체 전달
+function을 활용해서도 할 수 있다.
+```javascript
+function getContentList([,{contentlist}]) {
+  console.log(contentlist);
+}
+getContentList(search); //결과값: daum의 ["이메일", "까페", "쇼핑", "뉴스"] 가 로그에 찍힘.
+```
+이벤트등록해서 실행할 때도 Destructuring사용이 가능하다.
+```javascript
+document.querySelector("div").addEventListener("click", function(target){
+  console.log(target.tagName); //결과값: "DIV"
+  console.log(target.innerText); //결과값: div안에 있는 텍스트
+}); 
+```
+이렇게 사용할 수도 있다.
 
 <br>
 
 ## 6. Set & WeakSet
 ### 1) Set으로 유니크한 배열만들기
-### 2) WeakSet으로 효과적으로 객체타입저장하기
+Set: 중복없이 유일한 값을 저장하려고 할 때. 이미 존재하는 지 체크할 때 유용.
+```javascript
+let mySet = new Set();
+console.log(toString.call(mySet));
 
+mySet.add("harry");
+mySet.add("Sally");
+mySet.add("harry");
+
+mySet.forEach(function(value) {
+  console.log(value); // 결과값: "harry", "Sally" harry를 한번 더 넣어줬지만 중복이므로 두 가지만 저장된다.
+});
+console.log(mySet.legnth);
+```
+- <code>set.has()</code>: Set에 해당 값이 있는지 확인
+- <code>set.delete()</code>: Set에 해당 값이 있으면 지우기
+
+### 2) WeakSet으로 효과적으로 객체타입저장하기
+Weakset은 참조를 가지고 있는 객체만 저장이 가능하다.
+객체형태를 중복없이 저장하려고 할 때 유용하다.
+```javascript
+let arr = [1,2,3,4];
+let ws = new WeakSet();
+
+ws.add(arr); //제대로 나온다.
+ws.add(111); //Invalid
+ws.add("111");//Invalid
+ws.add(null);//Invalid
+ws.add(function(){}); //제대로 나온다.
+```
 <br>
 
 ## 7. Map & WeakMap
 ### 1) Map & WeakMap 추가정보를 담은 객체저장하기
-### 2) WeakMap클래스 인스턴스 변수 보호하기
+Array를 개선한 자료구조 -> Set,WeakSet
+Object를 개선한 자료구조 -> Map,WeakMap
+Map은 Key, Value구조 이다.
+```javascript
+let wm = new WeapMap();
+let myfun = function(){};
+//이 함수가 얼마나 실행됐는지?를 알려고 할때.
 
+wm.set(myfun,0);
+console.log(wm);
+
+let count = 0;
+for(let i=0; i<10; i++){
+  count = wm.get(myfun);
+  count++;
+  wm.set(myfun, count);
+}
+console.log(wm.get(myfun))//10
+
+```
+### 2) WeakMap클래스 인스턴스 변수 보호하기
+WeakMap 활용
+```javascript
+const wm = new WeakMap();
+
+function Area(height, width){
+  wm.set(this, {height, width});
+}
+
+Area.prototype.getArea = function(){
+  const {height,width} = wm.get(this);
+  return height * width;
+}
+
+let myarea = new Area(10,20);
+console.log(myarea.getArea());
+console.log(myarea.height);
+```
 <br>
 
 ## 8. Template
