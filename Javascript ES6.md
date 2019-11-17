@@ -415,6 +415,27 @@ console.log(myarea.height);
 
 ## 8. Template
 ### 1) Template처리
+UI개발에서 매우 중요한 것.
+JSON을 응답을 받고, Javascript Object로 변환 후에 어떠한 데이터처리 조작을 한 훙 DOM에 추가
+데이터 + HTML문자열의 결합이 필요하기 때문에.
+
+예시1)
+```javascript
+const data = [
+  {
+    name: 'star-bucks',
+    order: true,
+    items: ['americano','cafelatte','dutch']
+  },
+  {
+    name: 'twosome-place'
+    order: false,
+  }
+]
+const template = `<div>welcome ${data[0].name} !!`;
+]
+```
+
 ### 2) Tagged Template Literals
 
 <br>
