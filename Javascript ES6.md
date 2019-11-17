@@ -524,8 +524,37 @@ const myObj = {
 <br>
 
 ## 10. 객체
-### 1) class를 통학 객체생성
+### 1) class를 통한 객체생성
+```javascript
+class Health {
+  constructor(name, lastTime){
+    this.name = name;
+    this.lastTime = lastTime; 
+  }
+  showHealth(){
+    console.log("Hello" + this.name);
+  }
+const myHealth = new Health("kim");
+}
+```
+모습만 클래스고 사실상 function
+모듈화 + 가독성면에서 좋음.
+
 ### 2) Object assign으로 JS객체만들기
+```javascript
+const healthObj = {
+   showHealth : function(){
+     console.log("오늘 운동시간: " + this.healthTime)
+   }
+}
+const myHealth = Object.create(healthObj);
+myHealth.healthTime = "11:20";
+myHealth.name = "kim";
+
+```
+자바스크립트로 객체를 만드는 표준적인 방법, 그러나 일일이 값을 넣어주어야 하는 불편함이 있다.
+
+
 ### 3) Object assign으로 Immutable 객체만들기
 ### 4) Object setPrototypeOf로 객체만들기
 ### 5) Object setPrototypeOf로 객체간 prototype chain 생성하기
