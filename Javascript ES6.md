@@ -433,11 +433,36 @@ const data = [
   }
 ]
 const template = `<div>welcome ${data[0].name} !!`;
-]
 ```
+콘솔로 `template`를 찍어보면 `<div>welcome ${data[0].name} !!`가 찍힌다.
+
 
 ### 2) Tagged Template Literals
+```javascript
+const data = [
+  {
+    name: 'star-bucks',
+    order: true,
+    items: ['americano','cafelatte','dutch']
+  },
+  {
+    name: 'twosome-place'
+    order: false,
+  }
+]
 
+//Tagged template literals
+function fn (tags, name, items) {
+  console.log(tags);
+  if(typeof items === "undefined") {
+    items = "주문가능한 상품이 없습니다.";
+  }
+  return (tags[0] + name + tags[1] + items + tags[2]);
+}
+
+const template = `<div>welcome ${data[1].name} !!</div>`
+                 `<h2>주문가능항목</h2><div>${data[1].name}</div>`;
+```
 <br>
 
 ## 9. function
