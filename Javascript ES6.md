@@ -455,19 +455,69 @@ const data = [
 function fn (tags, name, items) {
   console.log(tags);
   if(typeof items === "undefined") {
-    items = "주문가능한 상품이 없습니다.";
+    items = "<span style='color:red'>주문가능한 상품이 없습니다.</span>";
   }
   return (tags[0] + name + tags[1] + items + tags[2]);
 }
+data.forEach((v) => {
+  let template = `<h2>welcome ${v.name} !!</h2>`
+                 `<h4>주문가능항목</h4><div>${v.name}</div>`;
+              document.querySelector("#message").innerHTML += template;
+});
 
-const template = `<div>welcome ${data[1].name} !!</div>`
-                 `<h2>주문가능항목</h2><div>${data[1].name}</div>`;
 ```
+
+
 <br>
 
 ## 9. function
 ### 1) Arrow function 활용
+- 자바스크립트의 콜백함수
+```javascript
+setTimeout(function() {
+  console.log("settimeout arrow");
+}, 1000);
+
+//arrow 함수
+setTimeout(() => {
+  console.log("settimeout arrow");
+}, 1000);
+
+let newArr = [1,2,3,4,5].map(function(value, index, object) {
+  return value * 2
+});
+console.log(newArr)//[2, 4, 6, 8, 10] 다음에 "settimeout arrow" 출력
+```
+이러한 결과가 나옴
+
+```javascript
+let newArr = [1,2,3,4,5].map((v) => {
+  return v * 2
+});
+console.log("arrow newArr", newArr);
+//"arrow newArr"
+//[2, 4, 6, 8, 10]
+
+let newArr = [1,2,3,4,5].map((v) v * 2); //이렇게 생략도 가능
+```
+
+
 ### 2) Arrow function의 this context
+```javascript
+const myObj = {
+  runTimeout() {
+    setTimeout(() {
+    console.log(this === window);
+    this.printData();
+    }, 200);
+  },
+  
+  printData(){
+    console.log("hi codesquad!");
+  }
+}
+```
+
 ### 3) function default parameters
 ### 4) rest parameters
 
