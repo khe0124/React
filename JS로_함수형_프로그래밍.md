@@ -63,10 +63,67 @@ function add5(obj1, b) {
 함수를 값으로 다룰 수 있다. 변수에 담을 수 있다. 
 ```javascript
 var f1 = function(a) {return a*a;}; //이렇게 함수를 변수에 담을 수 있다.
+```
 
+## 함수형으로 전환하기
+### 회원목록 map, filter
+```javascript
+var users = [
+{id: 1, name: 'kim', age:24},
+{id: 2, name: 'Lee', age:32},
+{id: 3, name: 'Park', age:31},
+{id: 4, name: 'Kang', age:28},
+{id: 5, name: 'Moon', age:23},
+{id: 6, name: 'Han', age:25},
+{id: 7, name: 'Ko', age:21},
+{id: 8, name: 'Kwon', age:38}
+];
+
+//1. 명령형 코드
+//1) 30세 이상인 users를 추려낸다.
+var temp_users = []; //새로운 배열을 만들기
+for (var i=0; i<users.length; i++){
+  if(users[i].age >= 30 ){
+    temp_users.push(users[i]);
+  }
+}
+
+//2) 30세 이상인 users의 names를 수집한다.
+
+for (var i=0; i<temp_users.length; i++){//이미 위에서 30세 이상의 user를 걸렀기 때문에 temp_users로 제한둠
+  
+}
+
+//3) 30세 미만인 users를 거른다.
+//4) 30세 미만인 users의 ages를 수집한다.
+
+//2. _filter, _map으로 리팩토링
+
+//3. each 만들기
+//1) _each로 _map, _filter 중복제거
 
 
 ```
 
-## ddd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
