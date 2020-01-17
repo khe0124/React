@@ -89,41 +89,77 @@ for (var i=0; i<users.length; i++){
 }
 
 //2) 30세 이상인 users의 names를 수집한다.
-
+var names = [];
 for (var i=0; i<temp_users.length; i++){//이미 위에서 30세 이상의 user를 걸렀기 때문에 temp_users로 제한둠
-  
+  names.push(temp_users[i].name);
 }
 
 //3) 30세 미만인 users를 거른다.
+var temp_users = [];
+for(var i =0; i<users.length; i++) {
+  if(users[i].age < 30){
+    temp_users.push(users[i]);
+  }
+}
+
 //4) 30세 미만인 users의 ages를 수집한다.
+var ages = [];
+for(var i=0; i<temp_users.length; i++){
+  ages.push(temp_users[i].age);
+}
+
+// **위와 같은 코드들은 너무나 중복이 많이 발생한다. 이것을 해결하기위해 filter와 map을 사용해서 리팩토링 해보자.
+// 함수형 프로그래밍에서는 중복을 제거하거나 어떤 부분을 추상화할 때 단위로 함수를 사용한다.
+// 어떤 조건을 필터링할 것인가를 위임
 
 //2. _filter, _map으로 리팩토링
+//이런 필터함수를 고차함수로라고도 한다.
 
-//3. each 만들기
-//1) _each로 _map, _filter 중복제거
+// filter 이용하기
+function _filter(users, predi){ //2.predi라는 함수에 위임
+ var new_list = [];
+  for(var i =0; i<users.length; i++) {
+    if(predi(users[i].age)){//1.어떤 조건일때 이 함수로 들어올 것인가.
+      new_list.push(users[i]);
+    }
+  }
+  return new_list;
+}
+
+//예1) 30세 이상 유저
+console.log(
+_filter(users, function(user) { return user.age >= 30; }));
+
+//예2) 30세 미만 유저
+console.log(
+_filter(users, function(user) { return user.age < 30; }));
+
+// map 이용하기
+function _map(list, mapper){
+  var new_list = [];
+  for(var i=0; i<list.length; i++){
+    new_list.push(mapper(list[i]));
+  }
+  return new_list;
+}
+
+var over_30 = _filter(users, function(user) { return user.age >= 30; });
+
+//이렇게 하면 30세 이상의 유저들만 잘 필터되어서, 조건에 맞는 사람들의 이름만 리턴이 된다.
+var names = _map(over_30, function(user){
+  return user.name;
+})
+
+//이렇게 하면 30세 미만의 유저들만 잘 필터되어서, 조건에 맞는 사람들의 나이만 리턴이 된다.
+var under_30 = _filter(users, function(user) { return user.age < 30; });
+var ages = _map(under_30, function(user){
+  return user.age;
+})
 
 
+_map(
+  _filter(users, function(user) { return user.age >= 30; }),
+  function(user) { return user.name; }
+)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+map, filter
