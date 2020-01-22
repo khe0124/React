@@ -253,15 +253,22 @@ _map([1,2,3,4], function(v){ //이렇게 두번째 인자로 오는 함수를 �
 ```
 
 ### 4. Currying
-Currying은 여러개의 인자를 가진 함수를 호출 할 경우, 파라미터의 수보다 적은 수의 파라미터를 인자로 받으면 누락된 파라미터를 인자로 받는 기법을 말합니다. 
+Currying은 여러개의 인자를 가진 함수를 호출 할 경우, 파라미터의 수보다 적은 수의 파라미터를 인자로 받으면 
+누락된 파라미터를 인자로 받는 기법을 말합니다. 
 ```javascript
 
 // 1. _curry,
+//보통의 커리함수는 왼쪽부터 인자를 적용한다.
 function _curry(fn) {
-  returne function(a) {
-    return function(b) {
-      return fn(a, b);
-    }
+  returne function(a, b) {
+    return arguments.length == 2 ? fn(a, b) : function(b) { return fn(a, b); };
+  }
+}
+
+//오른쪽부터 인자를 적용하는 커리함수 _curryr
+function _curryr(fn) {
+  return function(a, b) {
+    return arguments.length == 2 ? fn(a, b) : function(b) { return fn(a, b); };
   }
 }
 
@@ -269,5 +276,79 @@ var add = function(a, b){
   return a + b;
 }
 
+var sub = _curry(function(){
+  return a - b;  
+});
+
+console.log( sub(10, 5));
+
+var sub10 = sub(10);
+console.log( sub10(5));
+
+//2. _get 만들어 좀 더 간단하게 하기
+function _get(obj, key) {
+  return obj == null ? undefined : obj[key];
+}
+
+//이코드와 
+console.log(
+_map(
+  _filter(users, function(user) { return user.age >= 30; }),
+  function(user) { return user.name; }
+));
+
+console.log(
+_map(
+  _filter(users, function(user) { return user.age < 30; }),
+  function(user) { return user.age; }
+));
+
+//이 코드의 결과는 같다.
+console.log(
+_map(
+  _filter(users, function(user) { return user.age >= 30; }),
+  _get('name')));
+
+console.log(
+_map(
+  _filter(users, function(user) { return user.age < 30; }),
+  _get('age')));
 ```
+
+### 4. reduce 만들기
+```javascript
+var slice = Array.prototype.slice;
+function _rest(list, num) {
+  return slice.call(list, num || 1);
+}
+
+function _reduce(list, iter, memo) {
+ if(arguments.length == 2){
+    memo = list[0];
+    list = _rest(list);
+ }
+ _each(list, function(val){
+   memo = iter(memo, val);
+  })
+}
+
+console.log(
+  _reduce([1,2,3], add, 0));
+// 6
+
+memo = add(0, 1)
+add(memo)
+memo = add(memo, 2);
+memo = add(memo, 3);  
+
+```
+reduce는 원래 자료와 다른 좀 축약된 자료를 만들때 사용한다.
+
+
+
+### 5. 파이프라인, _go, _pipe, 화살표함수
+
+
+
+
 
