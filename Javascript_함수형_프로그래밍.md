@@ -66,7 +66,7 @@ var f1 = function(a) {return a*a;}; //이렇게 함수를 변수에 담을 수 �
 ```
 
 ## 함수형으로 전환하기
-### 회원목록 map, filter
+### 1. 회원목록 map, filter
 ```javascript
 var users = [
 {id: 1, name: 'kim', age:24},
@@ -156,10 +156,104 @@ var ages = _map(under_30, function(user){
   return user.age;
 })
 
-
-_map(
+console.log(_map(
   _filter(users, function(user) { return user.age >= 30; }),
   function(user) { return user.name; }
-)
+));
+
+console.log(_map(
+  _filter(users, function(user) { return user.age < 30; }),
+  function(user) { return user.age; }
+));
 ```
-map, filter
+코드를 고쳐줄 부분이 최소화가 된다. 보다 안정성 높고 테스트하기 쉬운 코드로 만들 수 있다.
+
+
+### 2. each
+위 예제의 filter,map 사용한 부분만 가져온다.
+```javascript
+
+// filter 이용하기
+function _filter(users, predi){ //2.predi라는 함수에 위임
+ var new_list = [];
+  for(var i =0; i<users.length; i++) {
+    if(predi(users[i].age)){//1.어떤 조건일때 이 함수로 들어올 것인가.
+      new_list.push(users[i]);
+    }
+  }
+  return new_list;
+}
+
+// map 이용하기
+function _map(list, mapper){
+  var new_list = [];
+  _each(list, function(val){ //iter함수를 실행했기 때문에 하나씩 꺼내서 사용
+    new_list.push(mapper(val)); //_each함수의 인자 함수를 실행하며 하나씩 실행
+  });
+  for(var i=0; i<list.length; i++){
+    new_list.push(mapper(list[i]));
+  }
+  return new_list;
+}
+
+// each 이 each를 다른 함수안에서 사용
+function _each(list, iter){ //리스트를 순회하면서 해당 i번째 값들을 순회하는 함수
+  for(var i=0; i<list.length; i++){
+    iter(list[]);
+  }
+  return list; //받은 값을 리턴하는 함수
+}
+
+```
+이런식으로 코드를 작성하면 안정성,정확성이 높아진다.
+
+### 3. 다형성
+filter, map, each는 자바스크립트에 이미 있는 함수이다.
+정확하게는 함수가 아니라 메서드이다. 객체의 상태에 따라 결과가 달라지는 메서드.
+map,filter는 array에 사용되는 메서드인데 array스러운(유사배열)객체에 map,filter를 사용하고 싶을 수도 있다.
+함수형 프로그래밍에서는 함수를 먼저 만들고 함수에 맞는 데이터를 적용하는 방식으로 코딩한다.
+
+```javascript
+console.log(
+ [1,2,3,4].map(function(val){
+    return val * 2;
+ })
+); //2,4,6,8
+
+console.log(
+ [1,2,3,4].filter(function(val){
+    return val % 2;
+ })
+); //1,3
+
+//이 코드는 에러가 나지만.
+console.log(
+  document.querySelectorAll('*').map(function(node){
+    return node.nodeName;
+  })
+)
+
+//미리 만들었던 _map함수를 사용하면 정상 동작한다.
+console.log(
+  _map(document.querySelectorAll('*'), function(node){
+    return node.nodeName;
+  })  
+);
+
+
+//내부다형성
+//이전에 predi, iter, mapper 함수를 만들었다.
+
+_map([1,2,3,4], function(v){ //이렇게 두번째 인자로 오는 함수를 콜백함수라고 부르는 경향이 있는데,
+//함수형 프로그래밍에서는 이 두번째 인자 함수가 어떤 역할을 하냐에 따라 다양한 이름을 갖는게 중요
+  return v+10;
+});
+
+
+```
+
+
+
+
+
+
