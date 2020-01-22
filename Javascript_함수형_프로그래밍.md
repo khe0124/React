@@ -252,8 +252,22 @@ _map([1,2,3,4], function(v){ //이렇게 두번째 인자로 오는 함수를 �
 
 ```
 
+### 4. Currying
+Currying은 여러개의 인자를 가진 함수를 호출 할 경우, 파라미터의 수보다 적은 수의 파라미터를 인자로 받으면 누락된 파라미터를 인자로 받는 기법을 말합니다. 
+```javascript
 
+// 1. _curry,
+function _curry(fn) {
+  returne function(a) {
+    return function(b) {
+      return fn(a, b);
+    }
+  }
+}
 
+var add = function(a, b){
+  return a + b;
+}
 
-
+```
 
