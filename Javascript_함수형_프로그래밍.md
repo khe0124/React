@@ -350,11 +350,33 @@ reduce는 원래 자료와 다른 좀 축약된 자료를 만들때 사용한다
 ```javascript
 //1. _pipe
 function _pipe() {
-  
+  var fns = arguments;
+  return function(arg) {
+    return _reduce(fns, function(arg, fn) {
+      return fn(arg);
+    }, arg);
+  }
 }
+
+var f1 = _pipe(function(a){ a + 1 }, function(a){ a *2 }) //함수들을 인자로 받아서 이 함수를 연속적으로 실행하게 함.
+//만약 
+f1(1); //이렇게 실행하면 첫번째 함수 2, 두번째 함수 4
+
 
 
 //2. _go
+function _go() {
+  var fns = _rest(arguments);
+  return _pipp.apply(null, fns)(arg);
+  
+}
+
+_go(1,
+  function(a){ a + 1 }, 
+  function(a){ a * 2 },
+  function(a){ a * a },
+  console.log);
+
 
 //3. users에 _go 적용
 
