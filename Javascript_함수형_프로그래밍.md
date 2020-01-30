@@ -379,6 +379,41 @@ _go(1,
 
 
 //3. users에 _go 적용
+console.log(
+_map(
+  _filter(users, function(user) { return user.age >= 30; }),
+  _get('name')));
+
+//-> 위와 같은 결과
+_go(users, 
+  function(users){
+    return _filter(users, function(user) {
+      return user.age >= 30;
+    });
+  },
+  function(user) {
+    return _map(users, _get('name'));
+  },
+  console.log())
+
+console.log(
+_map(
+  _filter(users, function(user) { return user.age < 30; }),
+  _get('age')));
+  
+  //-> 위와 같은 결과
+_go(users, 
+  function(users){
+    return _filter(users, function(user) {
+      return user.age < 30;
+    });
+  },
+  function(user) {
+    return _map(users, _get('age'));
+  },
+  console.log())  
+
+
 
 //4. 화살표함수 간단히
 
