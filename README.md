@@ -1,7 +1,8 @@
 # Vanilla JS
 Vanilla JS 공부를 위한 리파지토리입니다.</br>
 Vanilla JS는 순수 자바스크립트 자체입니다.
-https://vanillalist.top/
+* https://vanillalist.top/
+* https://rintiantta.github.io/jpub-vue/tutorials/todo.html#step11-%EC%84%A0%ED%83%9D-%EC%A0%84%EC%9A%A9-%EC%9E%85%EB%A0%A5-%EC%96%91%EC%8B%9D-%EB%A7%8C%EB%93%A4%EA%B8%B0
 </br>
 
 ## JS 완벽가이드
