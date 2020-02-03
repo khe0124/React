@@ -429,23 +429,19 @@ _go(users,
 ```javascript
 ```
 
-### 1. 수집하기 - map, values, pluck
-```javascript
-```
-
 ### 2. 거르기 - reject, compact
 ```javascript
 ```
 
-### 3. 찾아내기 - map, values, pluck
+### 3. 찾아내기 - find, find_index, some, every
 ```javascript
 ```
 
-### 4. 접기 - map, values, pluck
+### 4. 접기 - reduce, min_by, max_by
 ```javascript
 ```
 
-### 5. 접기 - map, values, pluck
+### 5. 접기 - group_by, count_by, 조합
 ```javascript
 ```
 
