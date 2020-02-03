@@ -421,7 +421,45 @@ _go(users,
 ```
 
 ### 6. _each의 외부 다형성 높이기
+```javascript
 ```
 
+## 컬렉션 중심 프로그래밍
+### 1. 수집하기 - map, values, pluck
+```javascript
+```
 
+### 1. 수집하기 - map, values, pluck
+```javascript
+```
+
+### 2. 거르기 - reject, compact
+```javascript
+```
+
+### 3. 찾아내기 - map, values, pluck
+```javascript
+```
+
+### 4. 접기 - map, values, pluck
+```javascript
+```
+
+### 5. 접기 - map, values, pluck
+```javascript
+```
+
+## 자바스크립트에서의 지연 평가
+### 1. 지연평가
+### 2. 요약, 클로저, 엘릭서, 병렬성
+
+## 실전코드조각 Ⅰ
+### users, posts, comments
+### 효율 높이기
+
+## 실전코드조각 Ⅱ
+### 장바구니
+
+## 비동기
+### 비동기
 
