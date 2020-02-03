@@ -443,6 +443,7 @@ _go(users,
 
 ### 5. 접기 - group_by, count_by, 조합
 ```javascript
+
 ```
 
 ## 자바스크립트에서의 지연 평가
